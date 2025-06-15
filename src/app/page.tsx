@@ -40,6 +40,8 @@ export default function HomePage() {
       
       setWeatherData(result.data);
       setCurrentLocation(location);
+
+      localStorage.setItem('lastLocation', location);
       
     } catch (err) {
       console.error('Weather fetch error:', err);
@@ -55,7 +57,8 @@ export default function HomePage() {
   };
 
   useEffect(() => {
-    fetchWeather(DEFAULT_LOCATION);
+    const cachedLocation = localStorage.getItem('lastLocation');
+    fetchWeather(cachedLocation || DEFAULT_LOCATION);
   }, []);
 
   const handleSearch = (location: string) => {
