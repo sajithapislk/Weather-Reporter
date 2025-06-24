@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Cloud, Sun, CloudRain, CloudSun, AlertTriangle, RefreshCw } from 'lucide-react';
+import { CloudSun, AlertTriangle, RefreshCw } from 'lucide-react';
 import { useWeatherData } from '../hooks/useWeatherData';
 import { useTime } from '../hooks/useTime';
 import LoadingSpinner from './LoadingSpinner';

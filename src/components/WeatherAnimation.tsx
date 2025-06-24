@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { WeatherData } from '../types/weather';
 import { getWeatherEmoji } from '../utils/weatherUtils';
 
@@ -11,7 +12,6 @@ export const WeatherAnimation: React.FC<WeatherAnimationProps> = ({ weatherData 
     if (!weatherData) return null;
     
     const condition = weatherData.current.condition.text.toLowerCase();
-    const isDay = weatherData.current.is_day;
 
     if (condition.includes('rain') || condition.includes('shower')) {
       return 'https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExYXp4aHBheHl4NW45ZzZkdHJmN280MTl1ZTM5eHJ6OHZ4OHF5amtobyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/dI3D3BWfDub0Q/giphy.gif';
@@ -30,7 +30,7 @@ export const WeatherAnimation: React.FC<WeatherAnimationProps> = ({ weatherData 
 
   return (
     <div className="relative w-full h-48 overflow-hidden rounded-xl bg-gradient-to-b from-blue-200 to-blue-400">
-      <img 
+      <Image 
         src={gifUrl}
         alt={`${weatherData?.current.condition.text} weather animation`}
         className="w-full h-full object-cover rounded-xl opacity-90 mix-blend-multiply"

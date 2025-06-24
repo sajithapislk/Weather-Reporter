@@ -3,6 +3,13 @@ import { NextRequest, NextResponse } from 'next/server';
 const WEATHER_API_KEY = process.env.WEATHER_API_KEY;
 const WEATHER_API_BASE_URL = 'https://api.weatherapi.com/v1';
 
+interface WeatherSuggestion {
+  id: number;
+  name: string;
+  region: string;
+  country: string;
+}
+
 export async function GET(request: NextRequest) {
   if (!WEATHER_API_KEY) {
     return NextResponse.json(
@@ -23,7 +30,7 @@ export async function GET(request: NextRequest) {
 
   try {
     const apiUrl = `${WEATHER_API_BASE_URL}/search.json?key=${WEATHER_API_KEY}&q=${encodeURIComponent(query)}`;
-    
+
     const response = await fetch(apiUrl, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
@@ -38,8 +45,8 @@ export async function GET(request: NextRequest) {
     }
 
     const data = await response.json();
-    
-    const suggestions = data.map((item: any) => ({
+
+    const suggestions: WeatherSuggestion[] = data.map((item: WeatherSuggestion) => ({
       id: item.id,
       name: item.name,
       region: item.region,

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { CloudSun, AlertTriangle, RefreshCw } from 'lucide-react';
+import { CloudSun} from 'lucide-react';
 import SearchBar from '@/components/SearchBar';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import WeatherCard from '@/components/WeatherCard';
